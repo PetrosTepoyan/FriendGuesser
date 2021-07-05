@@ -12,6 +12,9 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
+//		let bubble = MessageBubble(frame: CGRect(origin: view.center, size: CGSize(width: 150, height: 80)))
+//		bubble.backgroundColor = .clear
+//		view.addSubview(bubble)
 	}
 
 

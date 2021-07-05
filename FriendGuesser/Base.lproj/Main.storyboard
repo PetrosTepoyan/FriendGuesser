@@ -3,10 +3,16 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Nunito-Regular.ttf">
+            <string>Nunito-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -65,19 +71,61 @@
                                     <outlet property="delegate" destination="uRP-rQ-Fpg" id="Yrr-0E-7Ys"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Kg-R7-wzG">
+                                <rect key="frame" x="0.0" y="818" width="414" height="78"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="What you want to type?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="945-Rm-YWa">
+                                        <rect key="frame" x="0.0" y="0.0" width="365" height="44"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="HKB-GE-J9Z"/>
+                                        </constraints>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="uRP-rQ-Fpg" id="3rf-Km-kI8"/>
+                                        </connections>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6Y-sg-mkJ">
+                                        <rect key="frame" x="365" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="i6Y-sg-mkJ" secondAttribute="height" id="Eos-MA-VcP"/>
+                                            <constraint firstAttribute="height" constant="44" id="Hd6-BZ-OZg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="paperplane.fill" catalog="system" symbolScale="large" renderingMode="template"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="945-Rm-YWa" firstAttribute="leading" secondItem="4Kg-R7-wzG" secondAttribute="leading" id="0PN-OH-vHs"/>
+                                    <constraint firstItem="i6Y-sg-mkJ" firstAttribute="leading" secondItem="945-Rm-YWa" secondAttribute="trailing" id="EEj-9z-k3V"/>
+                                    <constraint firstItem="945-Rm-YWa" firstAttribute="top" secondItem="4Kg-R7-wzG" secondAttribute="top" id="opF-uc-avf"/>
+                                    <constraint firstAttribute="trailing" secondItem="i6Y-sg-mkJ" secondAttribute="trailing" constant="5" id="tEu-eC-kwd"/>
+                                    <constraint firstItem="i6Y-sg-mkJ" firstAttribute="bottom" secondItem="945-Rm-YWa" secondAttribute="bottom" id="v3v-YI-2j2"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gY5-SC-4B3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ap1-8F-8LK" secondAttribute="bottom" id="9lu-0b-Lbh"/>
+                            <constraint firstItem="4Kg-R7-wzG" firstAttribute="trailing" secondItem="gY5-SC-4B3" secondAttribute="trailing" id="FF1-ni-meg"/>
+                            <constraint firstItem="gY5-SC-4B3" firstAttribute="bottom" secondItem="945-Rm-YWa" secondAttribute="bottom" id="IqW-IH-sZP"/>
                             <constraint firstItem="ap1-8F-8LK" firstAttribute="trailing" secondItem="gY5-SC-4B3" secondAttribute="trailing" id="Tqi-o4-RrD"/>
+                            <constraint firstItem="4Kg-R7-wzG" firstAttribute="leading" secondItem="gY5-SC-4B3" secondAttribute="leading" id="ido-Si-nun"/>
                             <constraint firstItem="ap1-8F-8LK" firstAttribute="leading" secondItem="gY5-SC-4B3" secondAttribute="leading" id="n2U-Wu-IM6"/>
                             <constraint firstItem="ap1-8F-8LK" firstAttribute="top" secondItem="gY5-SC-4B3" secondAttribute="top" id="srB-5S-h0K"/>
+                            <constraint firstAttribute="bottom" secondItem="4Kg-R7-wzG" secondAttribute="bottom" id="xTa-i1-tre"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cbP-aa-tL4"/>
                     <connections>
                         <outlet property="tableView" destination="ap1-8F-8LK" id="Pqb-RV-FsN"/>
+                        <outlet property="textView" destination="945-Rm-YWa" id="wm3-61-YFg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e4c-uY-Bpb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -86,6 +134,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="paperplane.fill" catalog="system" width="128" height="118"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

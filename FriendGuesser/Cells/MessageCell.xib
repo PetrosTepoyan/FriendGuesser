@@ -38,7 +38,7 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDc-4V-bWh">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDc-4V-bWh" customClass="MessageBubble" customModule="FriendGuesser" customModuleProvider="target">
                         <rect key="frame" x="63" y="5" width="263" height="125"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWA-6k-AHM">
@@ -49,7 +49,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.8041614134719911" green="0.91752878288282347" blue="0.96611279249191284" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="rWA-6k-AHM" firstAttribute="leading" secondItem="gDc-4V-bWh" secondAttribute="leading" constant="5" id="5dM-yx-J51"/>
                             <constraint firstAttribute="bottom" secondItem="rWA-6k-AHM" secondAttribute="bottom" id="HWg-gf-OTi"/>
@@ -58,7 +57,7 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="20"/>
+                                <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -75,6 +74,7 @@
             <connections>
                 <outlet property="animalCoverView" destination="pNj-OM-Ufm" id="pIQ-Lg-stc"/>
                 <outlet property="animalEmojiLabel" destination="Zt9-Cp-f0l" id="i7Q-wr-092"/>
+                <outlet property="messageTextLabel" destination="rWA-6k-AHM" id="Lhq-Vq-BPj"/>
             </connections>
             <point key="canvasLocation" x="52.898550724637687" y="20.424107142857142"/>
         </tableViewCell>

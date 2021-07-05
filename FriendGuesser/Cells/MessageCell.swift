@@ -13,6 +13,7 @@ class MessageCell : UITableViewCell {
 	@IBOutlet private weak var animalEmojiLabel: UILabel!
 	
 	@IBOutlet private weak var animalCoverView: UIView!
+	@IBOutlet weak var messageTextLabel: UILabel!
 	
 	static let identifier: String = "MessageCell"
 	
@@ -20,6 +21,7 @@ class MessageCell : UITableViewCell {
 		get {
 			animalEmojiLabel.text
 		}
+		
 		
 		set {
 			animalEmojiLabel.text = newValue
@@ -35,5 +37,16 @@ class MessageCell : UITableViewCell {
 			animalCoverView.backgroundColor = newValue
 		}
 	}
+	
+	var text: String? {
+		get {
+			messageTextLabel.text
+		}
+		
+		set {
+			messageTextLabel.text = newValue
+		}
+	}
+	
 	
 }

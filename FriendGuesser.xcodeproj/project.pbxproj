@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		155CEEF4269367CE0074CADD /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CEEF3269367CE0074CADD /* MessageBubble.swift */; };
+		155CEEF8269377D40074CADD /* ChatVCTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CEEF7269377D30074CADD /* ChatVCTextView.swift */; };
+		155CEEFB269379010074CADD /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 155CEEFA269379010074CADD /* RxKeyboard */; };
 		15DB9DD326926E840033356F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB9DD226926E840033356F /* AppDelegate.swift */; };
 		15DB9DD526926E840033356F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB9DD426926E840033356F /* SceneDelegate.swift */; };
 		15DB9DD726926E840033356F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB9DD626926E840033356F /* ViewController.swift */; };
@@ -41,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		155CEEF3269367CE0074CADD /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		155CEEF7269377D30074CADD /* ChatVCTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVCTextView.swift; sourceTree = "<group>"; };
 		15DB9DCF26926E840033356F /* FriendGuesser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendGuesser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB9DD226926E840033356F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15DB9DD426926E840033356F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				155CEEFB269379010074CADD /* RxKeyboard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +121,7 @@
 				15DB9DD426926E840033356F /* SceneDelegate.swift */,
 				15DB9DD626926E840033356F /* ViewController.swift */,
 				15DB9E08269270120033356F /* ChatVC.swift */,
+				155CEEF7269377D30074CADD /* ChatVCTextView.swift */,
 				15DB9E0F269288BD0033356F /* Animal.swift */,
 				15DB9E0626926FAF0033356F /* UIView+Extension.swift */,
 				15DB9E0D26927FE60033356F /* UITableViewCell+Extension.swift */,
@@ -150,6 +157,7 @@
 			children = (
 				15DB9E0226926F260033356F /* MessageCell.swift */,
 				15DB9E0426926F3C0033356F /* MessageCell.xib */,
+				155CEEF3269367CE0074CADD /* MessageBubble.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -170,6 +178,9 @@
 			dependencies = (
 			);
 			name = FriendGuesser;
+			packageProductDependencies = (
+				155CEEFA269379010074CADD /* RxKeyboard */,
+			);
 			productName = FriendGuesser;
 			productReference = 15DB9DCF26926E840033356F /* FriendGuesser.app */;
 			productType = "com.apple.product-type.application";
@@ -241,6 +252,9 @@
 				Base,
 			);
 			mainGroup = 15DB9DC626926E840033356F;
+			packageReferences = (
+				155CEEF9269379010074CADD /* XCRemoteSwiftPackageReference "RxKeyboard" */,
+			);
 			productRefGroup = 15DB9DD026926E840033356F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -285,10 +299,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				155CEEF8269377D40074CADD /* ChatVCTextView.swift in Sources */,
 				15DB9E0E26927FE60033356F /* UITableViewCell+Extension.swift in Sources */,
 				15DB9E10269288BD0033356F /* Animal.swift in Sources */,
 				15DB9E09269270120033356F /* ChatVC.swift in Sources */,
 				15DB9DD726926E840033356F /* ViewController.swift in Sources */,
+				155CEEF4269367CE0074CADD /* MessageBubble.swift in Sources */,
 				15DB9E0326926F260033356F /* MessageCell.swift in Sources */,
 				15DB9DD326926E840033356F /* AppDelegate.swift in Sources */,
 				15DB9E0726926FAF0033356F /* UIView+Extension.swift in Sources */,
@@ -625,6 +641,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		155CEEF9269379010074CADD /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		155CEEFA269379010074CADD /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 155CEEF9269379010074CADD /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 15DB9DC726926E840033356F /* Project object */;
 }
