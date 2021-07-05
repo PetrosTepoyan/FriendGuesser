@@ -15,6 +15,12 @@
 		15DB9DDF26926E850033356F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DB9DDD26926E850033356F /* LaunchScreen.storyboard */; };
 		15DB9DEA26926E850033356F /* FriendGuesserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB9DE926926E850033356F /* FriendGuesserTests.swift */; };
 		15DB9DF526926E860033356F /* FriendGuesserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB9DF426926E860033356F /* FriendGuesserUITests.swift */; };
+		15DB9E0326926F260033356F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB9E0226926F260033356F /* MessageCell.swift */; };
+		15DB9E0526926F3C0033356F /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15DB9E0426926F3C0033356F /* MessageCell.xib */; };
+		15DB9E0726926FAF0033356F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB9E0626926FAF0033356F /* UIView+Extension.swift */; };
+		15DB9E09269270120033356F /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB9E08269270120033356F /* ChatVC.swift */; };
+		15DB9E0E26927FE60033356F /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB9E0D26927FE60033356F /* UITableViewCell+Extension.swift */; };
+		15DB9E10269288BD0033356F /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB9E0F269288BD0033356F /* Animal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		15DB9DF026926E860033356F /* FriendGuesserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendGuesserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB9DF426926E860033356F /* FriendGuesserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendGuesserUITests.swift; sourceTree = "<group>"; };
 		15DB9DF626926E860033356F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15DB9E0226926F260033356F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		15DB9E0426926F3C0033356F /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		15DB9E0626926FAF0033356F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		15DB9E08269270120033356F /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		15DB9E0D26927FE60033356F /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
+		15DB9E0F269288BD0033356F /* Animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +114,11 @@
 				15DB9DD226926E840033356F /* AppDelegate.swift */,
 				15DB9DD426926E840033356F /* SceneDelegate.swift */,
 				15DB9DD626926E840033356F /* ViewController.swift */,
+				15DB9E08269270120033356F /* ChatVC.swift */,
+				15DB9E0F269288BD0033356F /* Animal.swift */,
+				15DB9E0626926FAF0033356F /* UIView+Extension.swift */,
+				15DB9E0D26927FE60033356F /* UITableViewCell+Extension.swift */,
+				15DB9E0A2692703E0033356F /* Cells */,
 				15DB9DD826926E840033356F /* Main.storyboard */,
 				15DB9DDB26926E850033356F /* Assets.xcassets */,
 				15DB9DDD26926E850033356F /* LaunchScreen.storyboard */,
@@ -126,6 +143,15 @@
 				15DB9DF626926E860033356F /* Info.plist */,
 			);
 			path = FriendGuesserUITests;
+			sourceTree = "<group>";
+		};
+		15DB9E0A2692703E0033356F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				15DB9E0226926F260033356F /* MessageCell.swift */,
+				15DB9E0426926F3C0033356F /* MessageCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15DB9DDF26926E850033356F /* LaunchScreen.storyboard in Resources */,
+				15DB9E0526926F3C0033356F /* MessageCell.xib in Resources */,
 				15DB9DDC26926E850033356F /* Assets.xcassets in Resources */,
 				15DB9DDA26926E840033356F /* Main.storyboard in Resources */,
 			);
@@ -258,8 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15DB9E0E26927FE60033356F /* UITableViewCell+Extension.swift in Sources */,
+				15DB9E10269288BD0033356F /* Animal.swift in Sources */,
+				15DB9E09269270120033356F /* ChatVC.swift in Sources */,
 				15DB9DD726926E840033356F /* ViewController.swift in Sources */,
+				15DB9E0326926F260033356F /* MessageCell.swift in Sources */,
 				15DB9DD326926E840033356F /* AppDelegate.swift in Sources */,
+				15DB9E0726926FAF0033356F /* UIView+Extension.swift in Sources */,
 				15DB9DD526926E840033356F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
