@@ -53,9 +53,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ap1-8F-8LK">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ap1-8F-8LK">
+                                <rect key="frame" x="0.0" y="44" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <gestureRecognizers/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="1er-vl-s4b">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="44"/>
@@ -69,6 +70,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="uRP-rQ-Fpg" id="V3T-RU-QVQ"/>
                                     <outlet property="delegate" destination="uRP-rQ-Fpg" id="Yrr-0E-7Ys"/>
+                                    <outletCollection property="gestureRecognizers" destination="wbF-wb-aAy" appends="YES" id="Pc7-pF-nuW"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Kg-R7-wzG">
@@ -112,10 +114,10 @@
                         <viewLayoutGuide key="safeArea" id="gY5-SC-4B3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ap1-8F-8LK" secondAttribute="bottom" id="9lu-0b-Lbh"/>
                             <constraint firstItem="4Kg-R7-wzG" firstAttribute="trailing" secondItem="gY5-SC-4B3" secondAttribute="trailing" id="FF1-ni-meg"/>
                             <constraint firstItem="gY5-SC-4B3" firstAttribute="bottom" secondItem="945-Rm-YWa" secondAttribute="bottom" id="IqW-IH-sZP"/>
                             <constraint firstItem="ap1-8F-8LK" firstAttribute="trailing" secondItem="gY5-SC-4B3" secondAttribute="trailing" id="Tqi-o4-RrD"/>
+                            <constraint firstItem="ap1-8F-8LK" firstAttribute="bottom" secondItem="4Kg-R7-wzG" secondAttribute="top" id="V73-XH-IlD"/>
                             <constraint firstItem="4Kg-R7-wzG" firstAttribute="leading" secondItem="gY5-SC-4B3" secondAttribute="leading" id="ido-Si-nun"/>
                             <constraint firstItem="ap1-8F-8LK" firstAttribute="leading" secondItem="gY5-SC-4B3" secondAttribute="leading" id="n2U-Wu-IM6"/>
                             <constraint firstItem="ap1-8F-8LK" firstAttribute="top" secondItem="gY5-SC-4B3" secondAttribute="top" id="srB-5S-h0K"/>
@@ -126,9 +128,15 @@
                     <connections>
                         <outlet property="tableView" destination="ap1-8F-8LK" id="Pqb-RV-FsN"/>
                         <outlet property="textView" destination="945-Rm-YWa" id="wm3-61-YFg"/>
+                        <outlet property="textViewBottomConstraint" destination="IqW-IH-sZP" id="ggd-rN-Jxe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e4c-uY-Bpb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="wbF-wb-aAy">
+                    <connections>
+                        <action selector="tableViewTouchUpInside:" destination="uRP-rQ-Fpg" id="99D-fY-ldl"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="863.768115942029" y="77.678571428571431"/>
         </scene>

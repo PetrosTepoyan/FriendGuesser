@@ -17,11 +17,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNj-OM-Ufm">
-                        <rect key="frame" x="5" y="78" width="52" height="52"/>
+                        <rect key="frame" x="5" y="86" width="44" height="44"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🦁" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zt9-Cp-f0l">
-                                <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -30,6 +30,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Zt9-Cp-f0l" secondAttribute="trailing" id="4Z8-Jv-58w"/>
                             <constraint firstItem="Zt9-Cp-f0l" firstAttribute="top" secondItem="pNj-OM-Ufm" secondAttribute="top" id="8Pf-tb-TdY"/>
+                            <constraint firstAttribute="width" constant="44" id="XbU-Cr-x0R"/>
                             <constraint firstAttribute="width" secondItem="pNj-OM-Ufm" secondAttribute="height" id="lmX-Kr-M0Y"/>
                             <constraint firstItem="Zt9-Cp-f0l" firstAttribute="leading" secondItem="pNj-OM-Ufm" secondAttribute="leading" id="pfQ-tu-cLG"/>
                             <constraint firstAttribute="bottom" secondItem="Zt9-Cp-f0l" secondAttribute="bottom" id="y5G-kC-Ofq"/>
@@ -39,21 +40,20 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDc-4V-bWh" customClass="MessageBubble" customModule="FriendGuesser" customModuleProvider="target">
-                        <rect key="frame" x="63" y="5" width="263" height="125"/>
+                        <rect key="frame" x="55" y="5" width="271" height="125"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWA-6k-AHM">
-                                <rect key="frame" x="5" y="0.0" width="253" height="125"/>
-                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWA-6k-AHM">
+                                <rect key="frame" x="15" y="10" width="246" height="105"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="rWA-6k-AHM" firstAttribute="leading" secondItem="gDc-4V-bWh" secondAttribute="leading" constant="5" id="5dM-yx-J51"/>
-                            <constraint firstAttribute="bottom" secondItem="rWA-6k-AHM" secondAttribute="bottom" id="HWg-gf-OTi"/>
-                            <constraint firstAttribute="trailing" secondItem="rWA-6k-AHM" secondAttribute="trailing" constant="5" id="InV-IA-r0K"/>
-                            <constraint firstItem="rWA-6k-AHM" firstAttribute="top" secondItem="gDc-4V-bWh" secondAttribute="top" id="P6z-nN-Aj2"/>
+                            <constraint firstItem="rWA-6k-AHM" firstAttribute="leading" secondItem="gDc-4V-bWh" secondAttribute="leading" constant="15" id="5dM-yx-J51"/>
+                            <constraint firstAttribute="bottom" secondItem="rWA-6k-AHM" secondAttribute="bottom" constant="10" id="HWg-gf-OTi"/>
+                            <constraint firstAttribute="trailing" secondItem="rWA-6k-AHM" secondAttribute="trailing" constant="10" id="InV-IA-r0K"/>
+                            <constraint firstItem="rWA-6k-AHM" firstAttribute="top" secondItem="gDc-4V-bWh" secondAttribute="top" constant="10" id="P6z-nN-Aj2"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -65,8 +65,8 @@
                 <constraints>
                     <constraint firstItem="gDc-4V-bWh" firstAttribute="top" secondItem="zwM-Uk-lsc" secondAttribute="top" constant="5" id="8Ly-rK-eQ4"/>
                     <constraint firstAttribute="bottom" secondItem="gDc-4V-bWh" secondAttribute="bottom" constant="5" id="Rdy-r3-LnI"/>
-                    <constraint firstAttribute="trailing" secondItem="gDc-4V-bWh" secondAttribute="trailing" constant="5" id="aon-83-4Fg"/>
                     <constraint firstItem="pNj-OM-Ufm" firstAttribute="leading" secondItem="zwM-Uk-lsc" secondAttribute="leading" constant="5" id="bd0-oC-Feo"/>
+                    <constraint firstAttribute="trailing" secondItem="gDc-4V-bWh" secondAttribute="trailing" constant="5" id="dgI-fI-ynk"/>
                     <constraint firstItem="gDc-4V-bWh" firstAttribute="leading" secondItem="pNj-OM-Ufm" secondAttribute="trailing" constant="6" id="dlZ-ux-Z2O"/>
                     <constraint firstAttribute="bottom" secondItem="pNj-OM-Ufm" secondAttribute="bottom" constant="5" id="rJ9-wf-xET"/>
                 </constraints>

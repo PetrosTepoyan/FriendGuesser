@@ -25,12 +25,16 @@ class MessageBubble: UIView {
 		
 		let width = rect.width
 		let height = rect.height
+//		var newRect = rect
+//		newRect.origin.x += 4
+//		newRect.size.width -= 4
+		
+//		let p = UIBezierPath(roundedRect: newRect, cornerRadius: 20)
 		let p = UIBezierPath()
 		
-//		UIBezierPath(roundedRect: rect, cornerRadius: 25)
 		p.move(to: CGPoint(x: 25, y: height))
 		p.addLine(to: CGPoint(x: width - 20, y: height))
-		
+
 		p.addCurve(to: CGPoint(x: width, y: height - 20),
 				   controlPoint1: CGPoint(x: width - 8, y: height),
 				   controlPoint2: CGPoint(x: width, y: height - 8))
@@ -54,11 +58,13 @@ class MessageBubble: UIView {
 				   controlPoint1: CGPoint(x: 16, y: height),
 				   controlPoint2: CGPoint(x: 20, y: height))
 		
+		p.usesEvenOddFillRule = false
 		UIColor.blue.setStroke()
 		p.stroke()
 		UIColor.blue.setFill()
 		p.fill()
 		backgroundColor = .clear
 		layer.backgroundColor = UIColor.clear.cgColor
+		setNeedsDisplay()
 	}
 }
