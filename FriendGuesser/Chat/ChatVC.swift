@@ -12,6 +12,10 @@ protocol ChatViewProtocol: AnyObject {
 	func liftTextInput(on height: CGFloat) -> Void
 }
 
+protocol ChatMessagesDelegate: AnyObject {
+	func receivedMessage(message: Message)
+}
+
 class ChatVC: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
@@ -21,41 +25,41 @@ class ChatVC: UIViewController {
 	@IBAction func tableViewTouchUpInside(_ sender: Any) {
 		view.endEditing(false)
 	}
+	@IBAction func sendButtonTouchUpInside(_ sender: Any) {
+		guard let text = textView.text, text != "" else { return }
+		let myAnimal: Animal = .unicorn
+		let newMessage: Message = .init(text: text, animal: myAnimal, date: Date())
+		Network.shared.sendMessage(message: newMessage)
+	}
+	
+	var messages: [Message] = [] {
+		didSet {
+			tableView.reloadData()
+		}
+	}
 	
 	var presenter: ChatPresenterProtocol!
 	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		Network.shared.delegate = self
 		setupTableView()
 		
 		presenter = ChatPresenter(view: self)
 		presenter.subscribeKeyboard()
 		
+		if #available(iOS 15.0, *) {
+			async {
+				self.messages = try await Network.shared.getMessages()
+			}
+		} else {
+			// Fallback on earlier versions
+		}
 		
 		
-		Network.shared.getMessages()
+		
 		createNewRoom()
-		
-		
-//		reference = db.collection("rooms/A94LqvTlNAhARzLRer71/collection_1")
-//		reference?.addDocument(data: ["author": "lion",
-//									  "text": "Hey, this is me",
-//									  "date": 2345678])
-//
-//		let messageListener = reference?.addSnapshotListener { querySnapshot, error in
-//			guard let snapshot = querySnapshot else {
-//				print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-//				return
-//			}
-//
-//			snapshot.documentChanges.forEach { change in
-//
-//				self.handleDocumentChange(change)
-//			}
-//		}
-		
-		
 		
 	}
 	
@@ -81,19 +85,17 @@ extension ChatVC: UITableViewDelegate {
 
 extension ChatVC: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 10
+		return messages.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: MessageCell.identifier, for: indexPath) as! MessageCell
 		
-		let animal = Animal.all.randomElement()!
+		let message = messages[indexPath.row]
+		cell.text = message.text
+		cell.coverColor = message.animal.color
+		cell.animalEmoji = message.animal.emoji
 		
-		cell.coverColor = animal.color
-		cell.animalEmoji = animal.emoji
-		cell.text = indexPath.row % 2 == 1 ? "Test" : """
- Lorem ipsum dolor sit amet, consectetur adipiscin elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-"""
 		
 		return cell
 	}
@@ -112,6 +114,12 @@ extension ChatVC : ChatViewProtocol {
 			self.view.layoutIfNeeded()
 		}
 		
+	}
+}
+
+extension ChatVC: ChatMessagesDelegate {
+	func receivedMessage(message: Message) {
+		messages.append(message)
 	}
 }
 

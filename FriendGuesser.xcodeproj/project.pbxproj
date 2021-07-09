@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15493FD626986803009B9ACA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15493FD526986803009B9ACA /* Message.swift */; };
 		155CEEF4269367CE0074CADD /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CEEF3269367CE0074CADD /* MessageBubble.swift */; };
 		155CEEF8269377D40074CADD /* ChatVCTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CEEF7269377D30074CADD /* ChatVCTextView.swift */; };
 		155CEEFB269379010074CADD /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 155CEEFA269379010074CADD /* RxKeyboard */; };
 		155CEEFD26938D4E0074CADD /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CEEFC26938D4E0074CADD /* UITableView+Extension.swift */; };
-		15B571B82697A28700A9E425 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B571B72697A28700A9E425 /* Message.swift */; };
 		15B571BA2697A85100A9E425 /* ChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B571B92697A85100A9E425 /* ChatPresenter.swift */; };
 		15B571BD2697AD0000A9E425 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B571BC2697AD0000A9E425 /* UIDevice+Extension.swift */; };
 		15D07D1C26972B320085C351 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D07D1B26972B320085C351 /* Network.swift */; };
@@ -57,10 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15493FD526986803009B9ACA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		155CEEF3269367CE0074CADD /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		155CEEF7269377D30074CADD /* ChatVCTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVCTextView.swift; sourceTree = "<group>"; };
 		155CEEFC26938D4E0074CADD /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
-		15B571B72697A28700A9E425 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		15B571B92697A85100A9E425 /* ChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPresenter.swift; sourceTree = "<group>"; };
 		15B571BC2697AD0000A9E425 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		15D07D1B26972B320085C351 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -118,6 +118,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15493FD726986846009B9ACA /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				15DB9E0F269288BD0033356F /* Animal.swift */,
+				15493FD526986803009B9ACA /* Message.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		15B571BB2697ACEA00A9E425 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +140,9 @@
 		15B571BE2697AD0700A9E425 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				15DB9E0626926FAF0033356F /* UIView+Extension.swift */,
+				155CEEFC26938D4E0074CADD /* UITableView+Extension.swift */,
+				15DB9E0D26927FE60033356F /* UITableViewCell+Extension.swift */,
 				15B571BC2697AD0000A9E425 /* UIDevice+Extension.swift */,
 			);
 			path = Extensions;
@@ -177,16 +189,12 @@
 			isa = PBXGroup;
 			children = (
 				15DB9DD226926E840033356F /* AppDelegate.swift */,
-				15B571BE2697AD0700A9E425 /* Extensions */,
 				15DB9DD426926E840033356F /* SceneDelegate.swift */,
+				15B571BE2697AD0700A9E425 /* Extensions */,
 				15DB9DD626926E840033356F /* ViewController.swift */,
 				15B571BB2697ACEA00A9E425 /* Chat */,
-				15DB9E0F269288BD0033356F /* Animal.swift */,
-				15B571B72697A28700A9E425 /* Message.swift */,
+				15493FD726986846009B9ACA /* Entities */,
 				15D07D1A26972B1E0085C351 /* Network */,
-				15DB9E0626926FAF0033356F /* UIView+Extension.swift */,
-				155CEEFC26938D4E0074CADD /* UITableView+Extension.swift */,
-				15DB9E0D26927FE60033356F /* UITableViewCell+Extension.swift */,
 				15DB9E0A2692703E0033356F /* Cells */,
 				15DB9DD826926E840033356F /* Main.storyboard */,
 				15DB9DDB26926E850033356F /* Assets.xcassets */,
@@ -380,9 +388,9 @@
 				15DB9DD726926E840033356F /* ViewController.swift in Sources */,
 				155CEEF4269367CE0074CADD /* MessageBubble.swift in Sources */,
 				15DB9E0326926F260033356F /* MessageCell.swift in Sources */,
-				15B571B82697A28700A9E425 /* Message.swift in Sources */,
 				15B571BD2697AD0000A9E425 /* UIDevice+Extension.swift in Sources */,
 				15DB9DD326926E840033356F /* AppDelegate.swift in Sources */,
+				15493FD626986803009B9ACA /* Message.swift in Sources */,
 				15DB9E0726926FAF0033356F /* UIView+Extension.swift in Sources */,
 				15DB9DD526926E840033356F /* SceneDelegate.swift in Sources */,
 			);

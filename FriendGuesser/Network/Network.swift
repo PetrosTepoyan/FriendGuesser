@@ -20,9 +20,34 @@ class Network: NSObject {
 		return "rooms/" + roomID
 	}
 	
+	weak var delegate: ChatMessagesDelegate?
+	
 	override init() {
 		super.init()
 		reference = db.collection("rooms")
+		
+		let messageListener = reference?
+			.document("testRoom")
+			.collection("messages")
+			.addSnapshotListener { querySnapshot, error in
+			guard let snapshot = querySnapshot else {
+				print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+				return
+			}
+			
+			snapshot.documentChanges.forEach { change in
+				self.handleDocumentChange(change)
+			}
+		}
+	}
+	
+	func handleDocumentChange(_ change: DocumentChange) {
+		guard let message = try? Message(dict: change.document.data()) else { return }
+		
+		switch change.type {
+			case .added: delegate?.receivedMessage(message: message)
+			default: break
+		}
 	}
 	
 	func newRoom() {
@@ -61,29 +86,24 @@ class Network: NSObject {
 			}
 	}
 	
-	func getMessages() {
-		guard let reference = reference else { return }
-		reference
+	func getMessages() async throws -> [Message] {
+		guard let snapshot = try await reference?
 			.document("testRoom")
 			.collection("messages")
-			.getDocuments { (querySnapshot, error) in
-				guard error == nil else {
-					print("Error getting documents: \(error!)")
-					return
-				}
-				
-				let messages: [Message] = querySnapshot!.documents
-					.map { document in
-						let data: [String : Any] = document.data()
-						let text: String = data["text"] as! String
-						let animal: Animal = .init(data["animal"] as! String)
-						let date: Date = Date(timeIntervalSince1970: data["date"] as! TimeInterval)
-						return Message(text: text,
-									   animal: animal,
-									   date: date)
-					}
-				print(messages)
-			}
+			.getDocuments()
+		else { return [] }
+		return snapshot.documents.compactMap { document in
+			try? Message(dict: document.data())
+		}
+		
+	}
+	
+	func sendMessage(message: Message) {
+		guard let messagesCollection = reference?
+				.document("testRoom")
+				.collection("messages")
+		else { return }
+		let docReference = messagesCollection.addDocument(data: message.data)
 	}
 }
 
