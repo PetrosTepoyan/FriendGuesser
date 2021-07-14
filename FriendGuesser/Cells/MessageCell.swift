@@ -17,36 +17,15 @@ class MessageCell : UITableViewCell {
 	
 	static let identifier: String = "MessageCell"
 	
-	var animalEmoji: String? {
-		get {
-			animalEmojiLabel.text
+	func bind(_ message: Message, isPreviousSameAnimal: Bool = false) {
+		if isPreviousSameAnimal {
+			animalCoverView.isHidden = true
+		} else {
+			animalCoverView.backgroundColor = message.animal.color
 		}
 		
-		
-		set {
-			animalEmojiLabel.text = newValue
-		}
+		messageTextLabel.text = message.text
+		animalEmojiLabel.text = message.animal.emoji
 	}
-	
-	var coverColor: UIColor? {
-		get {
-			animalCoverView.backgroundColor
-		}
-		
-		set {
-			animalCoverView.backgroundColor = newValue
-		}
-	}
-	
-	var text: String? {
-		get {
-			messageTextLabel.text
-		}
-		
-		set {
-			messageTextLabel.text = newValue
-		}
-	}
-	
 	
 }

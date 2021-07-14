@@ -11,7 +11,8 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+	static var chosenAnimal: Animal = .lion
+	static let user = Sender(senderId: "self", displayName: "lion")
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.

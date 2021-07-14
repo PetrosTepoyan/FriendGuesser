@@ -59,9 +59,9 @@ class MessageBubble: UIView {
 				   controlPoint2: CGPoint(x: 20, y: height))
 		
 		p.usesEvenOddFillRule = false
-		UIColor.blue.setStroke()
+		UIColor.systemGray3.setStroke()
 		p.stroke()
-		UIColor.blue.setFill()
+		UIColor.systemGray3.setFill()
 		p.fill()
 		backgroundColor = .clear
 		layer.backgroundColor = UIColor.clear.cgColor

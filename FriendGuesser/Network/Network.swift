@@ -20,35 +20,46 @@ class Network: NSObject {
 		return "rooms/" + roomID
 	}
 	
-	weak var delegate: ChatMessagesDelegate?
+	weak var delegate: ChatMessagesReceivable?
+	
+	var messageListener: ListenerRegistration!
+	
+	private(set) var isLoading: Bool = false
 	
 	override init() {
 		super.init()
 		reference = db.collection("rooms")
-		
-		let messageListener = reference?
-			.document("testRoom")
-			.collection("messages")
-			.addSnapshotListener { querySnapshot, error in
-			guard let snapshot = querySnapshot else {
-				print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-				return
-			}
-			
-			snapshot.documentChanges.forEach { change in
-				self.handleDocumentChange(change)
-			}
-		}
 	}
 	
-	func handleDocumentChange(_ change: DocumentChange) {
-		guard let message = try? Message(dict: change.document.data()) else { return }
-		
-		switch change.type {
-			case .added: delegate?.receivedMessage(message: message)
-			default: break
-		}
+	deinit {
+		messageListener.remove()
 	}
+	
+	func subscribeForMessages() {
+		messageListener = reference?
+			.document("testRoom")
+			.collection("messages")
+			.order(by: "date")
+			.addSnapshotListener { querySnapshot, error in
+				guard let messages = querySnapshot?.documentChanges.compactMap({
+					return try? Message(document: $0.document)
+				})
+				else { return }
+				print(messages)
+				self.delegate?.didEndReceiveing(messages)
+			}
+		
+	}
+	
+//	func handleDocumentChange(_ change: DocumentChange) {
+//		switch change.type {
+//			case .added:
+//				guard let message = try? Message(document: change.document) else { return }
+//				// guard message.animal != myAnimal // update through UI
+//				delegate?.receivedMessage(message)
+//			default: break
+//		}
+//	}
 	
 	func newRoom() {
 		guard let reference = reference else { return }
@@ -68,42 +79,12 @@ class Network: NSObject {
 			.addDocument(data: [:])
 	}
 	
-	func getUsers() {
-		guard let reference = reference else { return }
-		reference
-			.document(roomID!)
-			.collection("userData")
-			.getDocuments { (querySnapshot, error) in
-				guard error == nil else {
-					print("Error getting documents: \(error!)")
-					return
-				}
-				
-				for document in querySnapshot!.documents {
-					let documentData: [String : Any] = document.data()
-					//					documentData[""]
-				}
-			}
-	}
-	
-	func getMessages() async throws -> [Message] {
-		guard let snapshot = try await reference?
-			.document("testRoom")
-			.collection("messages")
-			.getDocuments()
-		else { return [] }
-		return snapshot.documents.compactMap { document in
-			try? Message(dict: document.data())
-		}
-		
-	}
-	
 	func sendMessage(message: Message) {
 		guard let messagesCollection = reference?
 				.document("testRoom")
 				.collection("messages")
 		else { return }
-		let docReference = messagesCollection.addDocument(data: message.data)
+		messagesCollection.addDocument(data: message.data)
 	}
 }
 

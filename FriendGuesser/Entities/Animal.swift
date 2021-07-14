@@ -10,7 +10,6 @@ import UIKit
 
 struct Animal {
 	
-	
 	var emoji: String
 	var color: UIColor
 	var name: String
@@ -44,4 +43,10 @@ extension Animal {
 	static let unicorn: Animal = Animal(emoji: "🦄", color: .purple, name: "unicorn")
 	
 	static let all: [Animal] = [.lion, .koala, .fox, .unicorn]
+}
+
+extension Animal: Equatable {
+	static func == (lhs: Self, rhs: Self) -> Bool {
+		lhs.emoji == rhs.emoji
+	}
 }

@@ -6,29 +6,71 @@
 //
 
 import Foundation
+import MessageKit
+import FirebaseFirestore
 
-struct Message {
+enum MessageDecodeError: Error {
+	case decodeError
+}
 
-	var text: String
+struct Message: MessageType {
+	var sender: SenderType
+	var messageId: String
+	var sentDate: Date
+	var kind: MessageKind
 	var animal: Animal
-	var date: Date
+	var text: String
 	
-	init(dict: [String: Any]) throws {
-		self.text = dict["text"] as! String
-		self.animal = Animal(dict["animal"] as! String)
-		self.date = Date(timeIntervalSince1970:  dict["date"] as! TimeInterval)
+	static let none = Message()
+	
+	static func own(text: String) -> Message {
+		return Message(sender: AppDelegate.user,
+					   messageId: "",
+					   sentDate: Date(),
+					   animal: AppDelegate.chosenAnimal,
+					   text: text)
 	}
 	
-	init(text: String, animal: Animal, date: Date) {
+	init(document: QueryDocumentSnapshot) throws {
+		let data = document.data()
+		guard let text = data["text"] as? String,
+			  let animalString = data["animal"] as? String,
+			  let timeInterval = data["date"] as? TimeInterval
+		else { throw MessageDecodeError.decodeError }
+		
+		
+		self.messageId = document.documentID
+		self.sender = Sender(senderId: animalString, displayName: animalString)
+		self.sentDate = Date(timeIntervalSince1970: timeInterval)
+		self.kind = .text(text)
 		self.text = text
+		self.animal = Animal(animalString)
+	}
+	
+	internal init(sender: SenderType, messageId: String, sentDate: Date, animal: Animal, text: String) {
+		self.sender = sender
+		self.messageId = messageId
+		self.sentDate = sentDate
+		self.kind = .text(text)
 		self.animal = animal
-		self.date = date
+		self.text = text
+	}
+	
+	
+	
+	init() {
+		self.sender = Sender(senderId: "", displayName: "")
+		self.messageId = ""
+		self.sentDate = Date()
+		self.kind = .text("")
+		self.animal = .lion
+		self.text = "Empty message. Check datasource"
 	}
 	
 	var data: [String : Any] {
 		return ["text" : text,
 				"animal" : animal.name,
-				"date": date.timeIntervalSince1970]
+				"date": sentDate.timeIntervalSince1970]
 	}
 	
 }
