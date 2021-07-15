@@ -9,10 +9,6 @@ import Foundation
 import MessageKit
 import FirebaseFirestore
 
-enum MessageDecodeError: Error {
-	case decodeError
-}
-
 struct Message: MessageType {
 	var sender: SenderType
 	var messageId: String
@@ -24,11 +20,15 @@ struct Message: MessageType {
 	static let none = Message()
 	
 	static func own(text: String) -> Message {
-		return Message(sender: AppDelegate.user,
+		return Message(sender: Player.own,
 					   messageId: "",
 					   sentDate: Date(),
-					   animal: AppDelegate.chosenAnimal,
+					   animal: Player.own.animal ?? .none,
 					   text: text)
+	}
+	
+	enum MessageDecodeError: Error {
+		case decodeError
 	}
 	
 	init(document: QueryDocumentSnapshot) throws {
@@ -40,7 +40,7 @@ struct Message: MessageType {
 		
 		
 		self.messageId = document.documentID
-		self.sender = Sender(senderId: animalString, displayName: animalString)
+		self.sender = Player(senderId: animalString, displayName: animalString)
 		self.sentDate = Date(timeIntervalSince1970: timeInterval)
 		self.kind = .text(text)
 		self.text = text
@@ -59,11 +59,11 @@ struct Message: MessageType {
 	
 	
 	init() {
-		self.sender = Sender(senderId: "", displayName: "")
+		self.sender = Player(senderId: "", displayName: "")
 		self.messageId = ""
 		self.sentDate = Date()
 		self.kind = .text("")
-		self.animal = .lion
+		self.animal = .rabbit
 		self.text = "Empty message. Check datasource"
 	}
 	

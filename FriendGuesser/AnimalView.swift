@@ -12,22 +12,26 @@ import MessageKit
 class AnimalView: UIView {
 	private var animal: Animal!
 	
-	func setup(avatarView: AvatarView, animal: Animal) {
+	init(animal: Animal, frame: CGRect) {
+		super.init(frame: frame)
 		self.animal = animal
 		
 		let emojiLabel = UILabel()
-		avatarView.addSubview(emojiLabel)
+		addSubview(emojiLabel)
 		
 		emojiLabel.font = .systemFont(ofSize: 30)
 		emojiLabel.text = animal.emoji
 		emojiLabel.textAlignment = .center
 		emojiLabel.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
-			emojiLabel.leadingAnchor.constraint(equalTo: avatarView.leadingAnchor),
-			emojiLabel.trailingAnchor.constraint(equalTo: avatarView.trailingAnchor),
-			emojiLabel.topAnchor.constraint(equalTo: avatarView.topAnchor),
-			emojiLabel.bottomAnchor.constraint(equalTo: avatarView.bottomAnchor)
+			emojiLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+			emojiLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+			emojiLabel.topAnchor.constraint(equalTo: topAnchor),
+			emojiLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
 		])
+		
+		layer.cornerRadius = frame.width / 2
+		backgroundColor = animal.color
 	}
 	
 	override init(frame: CGRect) {

@@ -30,8 +30,8 @@ struct Animal {
 			case "koala": self = .koala
 			case "fox": self = .fox
 			case "unicorn": self = .unicorn
-				
-			default: self = .lion
+			case "rabbit": self = .rabbit
+			default: self = .none
 		}
 	}
 }
@@ -41,12 +41,21 @@ extension Animal {
 	static let koala: Animal   = Animal(emoji: "🐨", color: .gray, name: "koala")
 	static let fox: Animal	   = Animal(emoji: "🦊", color: .orange, name: "fox")
 	static let unicorn: Animal = Animal(emoji: "🦄", color: .purple, name: "unicorn")
+	static let rabbit: Animal  = Animal(emoji: "🐰", color: .systemBlue, name: "rabbit")
 	
-	static let all: [Animal] = [.lion, .koala, .fox, .unicorn]
+	static let all: [Animal] = [.lion, .koala, .fox, .unicorn, .rabbit]
+	
+	static let none: Animal    = Animal(emoji: "NIL", color: .clear, name: "none")
 }
 
 extension Animal: Equatable {
 	static func == (lhs: Self, rhs: Self) -> Bool {
 		lhs.emoji == rhs.emoji
+	}
+}
+
+extension Animal: Hashable {
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(emoji)
 	}
 }

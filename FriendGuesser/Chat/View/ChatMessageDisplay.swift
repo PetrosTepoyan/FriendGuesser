@@ -29,4 +29,6 @@ extension ChatVC: MessagesDisplayDelegate {
 		
 		return presenter.messageStyle(for: indexPath.section)
 	}
+	
+	
 }

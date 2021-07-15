@@ -12,10 +12,13 @@
 		155CEEF4269367CE0074CADD /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CEEF3269367CE0074CADD /* MessageBubble.swift */; };
 		155CEEFB269379010074CADD /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 155CEEFA269379010074CADD /* RxKeyboard */; };
 		155CEEFD26938D4E0074CADD /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CEEFC26938D4E0074CADD /* UITableView+Extension.swift */; };
+		15685D7A26A0B09300444AB0 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15685D7926A0B09300444AB0 /* Alerts.swift */; };
+		158D18D226A060B600D506FA /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158D18D026A060B500D506FA /* Nunito-Regular.ttf */; };
+		158D18D326A060B600D506FA /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158D18D126A060B600D506FA /* Nunito-Bold.ttf */; };
 		15B571BA2697A85100A9E425 /* ChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B571B92697A85100A9E425 /* ChatPresenter.swift */; };
 		15B571BD2697AD0000A9E425 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B571BC2697AD0000A9E425 /* UIDevice+Extension.swift */; };
 		15BD4AA6269F16BD00A72F5D /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 15BD4AA5269F16BD00A72F5D /* MessageKit */; };
-		15BD4AA8269F597E00A72F5D /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD4AA7269F597E00A72F5D /* Sender.swift */; };
+		15BD4AA8269F597E00A72F5D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD4AA7269F597E00A72F5D /* Player.swift */; };
 		15BD4AAA269F5F6A00A72F5D /* ChatInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD4AA9269F5F6A00A72F5D /* ChatInputBar.swift */; };
 		15BD4AAC269F5F8B00A72F5D /* ChatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD4AAB269F5F8B00A72F5D /* ChatDataSource.swift */; };
 		15BD4AAE269F5FAF00A72F5D /* ChatMessageDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD4AAD269F5FAF00A72F5D /* ChatMessageDisplay.swift */; };
@@ -73,9 +76,12 @@
 		154D9DD626988E93004EAD5B /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		155CEEF3269367CE0074CADD /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		155CEEFC26938D4E0074CADD /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		15685D7926A0B09300444AB0 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		158D18D026A060B500D506FA /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		158D18D126A060B600D506FA /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		15B571B92697A85100A9E425 /* ChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPresenter.swift; sourceTree = "<group>"; };
 		15B571BC2697AD0000A9E425 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
-		15BD4AA7269F597E00A72F5D /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		15BD4AA7269F597E00A72F5D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		15BD4AA9269F5F6A00A72F5D /* ChatInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputBar.swift; sourceTree = "<group>"; };
 		15BD4AAB269F5F8B00A72F5D /* ChatDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDataSource.swift; sourceTree = "<group>"; };
 		15BD4AAD269F5FAF00A72F5D /* ChatMessageDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageDisplay.swift; sourceTree = "<group>"; };
@@ -147,9 +153,24 @@
 			children = (
 				15DB9E0F269288BD0033356F /* Animal.swift */,
 				15493FD526986803009B9ACA /* Message.swift */,
-				15BD4AA7269F597E00A72F5D /* Sender.swift */,
+				15BD4AA7269F597E00A72F5D /* Player.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		15685D7826A0B08400444AB0 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				15685D7926A0B09300444AB0 /* Alerts.swift */,
+			);
+			path = PopUp;
+			sourceTree = "<group>";
+		};
+		15685D7B26A0FA9F00444AB0 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Question;
 			sourceTree = "<group>";
 		};
 		15B571BB2697ACEA00A9E425 /* Chat */ = {
@@ -240,15 +261,19 @@
 			children = (
 				15DB9DD226926E840033356F /* AppDelegate.swift */,
 				15DB9DD426926E840033356F /* SceneDelegate.swift */,
+				15BD4ABD269FA8F100A72F5D /* AnimalView.swift */,
+				15685D7826A0B08400444AB0 /* PopUp */,
 				15B571BE2697AD0700A9E425 /* Extensions */,
 				15DB9DD626926E840033356F /* ViewController.swift */,
+				15685D7B26A0FA9F00444AB0 /* Question */,
 				15B571BB2697ACEA00A9E425 /* Chat */,
-				15BD4ABD269FA8F100A72F5D /* AnimalView.swift */,
 				15493FD726986846009B9ACA /* Entities */,
 				15D07D1A26972B1E0085C351 /* Network */,
 				15DB9E0A2692703E0033356F /* Cells */,
 				15DB9DD826926E840033356F /* Main.storyboard */,
 				15DB9DDB26926E850033356F /* Assets.xcassets */,
+				158D18D126A060B600D506FA /* Nunito-Bold.ttf */,
+				158D18D026A060B500D506FA /* Nunito-Regular.ttf */,
 				15DB9DDD26926E850033356F /* LaunchScreen.storyboard */,
 				15DB9DE026926E850033356F /* Info.plist */,
 			);
@@ -400,6 +425,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				158D18D326A060B600D506FA /* Nunito-Bold.ttf in Resources */,
+				158D18D226A060B600D506FA /* Nunito-Regular.ttf in Resources */,
 				15DB9DDF26926E850033356F /* LaunchScreen.storyboard in Resources */,
 				15DB9E0526926F3C0033356F /* MessageCell.xib in Resources */,
 				15D70AC22693BC1A00E10BCD /* GoogleService-Info.plist in Resources */,
@@ -441,12 +468,13 @@
 				15B571BA2697A85100A9E425 /* ChatPresenter.swift in Sources */,
 				15DB9DD726926E840033356F /* ViewController.swift in Sources */,
 				155CEEF4269367CE0074CADD /* MessageBubble.swift in Sources */,
-				15BD4AA8269F597E00A72F5D /* Sender.swift in Sources */,
+				15BD4AA8269F597E00A72F5D /* Player.swift in Sources */,
 				15BD4AB6269F685100A72F5D /* ChatModelDelegate.swift in Sources */,
 				15DB9E0326926F260033356F /* MessageCell.swift in Sources */,
 				15BD4AAC269F5F8B00A72F5D /* ChatDataSource.swift in Sources */,
 				15BD4AB3269F67F900A72F5D /* ChatPresenterEvents.swift in Sources */,
 				15B571BD2697AD0000A9E425 /* UIDevice+Extension.swift in Sources */,
+				15685D7A26A0B09300444AB0 /* Alerts.swift in Sources */,
 				154D9DD726988E94004EAD5B /* ChatModel.swift in Sources */,
 				15DB9DD326926E840033356F /* AppDelegate.swift in Sources */,
 				15BD4AAE269F5FAF00A72F5D /* ChatMessageDisplay.swift in Sources */,

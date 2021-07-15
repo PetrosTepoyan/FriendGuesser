@@ -14,4 +14,7 @@ extension ChatVC: InputBarAccessoryViewDelegate {
 		presenter.didTapSendMessage(with: text)
 	}
 	
+	func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
+		
+	}
 }

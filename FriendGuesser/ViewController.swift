@@ -11,6 +11,7 @@ import FirebaseAuth
 class ViewController: UIViewController {
 
 	@IBOutlet weak var animalsCollectionView: UICollectionView!
+	@IBOutlet weak var nameTextField: UITextField!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -25,8 +26,20 @@ class ViewController: UIViewController {
 				debugPrint("Data result is nil")
 				return
 			}
+			let uid = dataResult.user.uid
+			Player.own.senderId = uid
 		}
+		
 	
+	}
+	@IBAction func enterButton(_ sender: Any) {
+		guard let text = nameTextField.text else { return }
+		Player.own.displayName = text
+		Network.shared.playerEntered(Player.own)
+		
+		let chatVC = ChatVC()
+		navigationController?.pushViewController(chatVC, animated: true)
+				
 	}
 }
 
@@ -51,9 +64,7 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		AppDelegate.chosenAnimal = Animal.all[indexPath.row]
-		let chatVC = ChatVC()
-		present(chatVC, animated: true, completion: nil)
+		Player.own.animal = Animal.all[indexPath.row]
 	}
 }
 

@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import UIKit
 
 class Network: NSObject {
 	static var shared = Network()
@@ -23,12 +24,14 @@ class Network: NSObject {
 	weak var delegate: ChatMessagesReceivable?
 	
 	var messageListener: ListenerRegistration!
+	var playerListener: ListenerRegistration!
 	
 	private(set) var isLoading: Bool = false
 	
 	override init() {
 		super.init()
 		reference = db.collection("rooms")
+		roomID = "testRoom"
 	}
 	
 	deinit {
@@ -45,21 +48,33 @@ class Network: NSObject {
 					return try? Message(document: $0.document)
 				})
 				else { return }
-				print(messages)
-				self.delegate?.didEndReceiveing(messages)
+				self.delegate?.didEndReceiving(messages)
 			}
-		
 	}
 	
-//	func handleDocumentChange(_ change: DocumentChange) {
-//		switch change.type {
-//			case .added:
-//				guard let message = try? Message(document: change.document) else { return }
-//				// guard message.animal != myAnimal // update through UI
-//				delegate?.receivedMessage(message)
-//			default: break
-//		}
-//	}
+	func subscribeForUsers() {
+		playerListener = reference?
+			.document("testRoom")
+			.collection("playerData")
+			.addSnapshotListener { querySnapshot, error in
+				var players: [Player] = []
+				querySnapshot?.documentChanges.forEach {
+					guard let player = try? Player(document: $0.document) else { return }
+					switch $0.type {
+						case .modified:
+							let isTyping = $0.document.data()["isTyping"] as! Bool
+							self.delegate?.isTyping(for: player, boolValue: isTyping)
+							
+						case .added:
+							players.append(player)
+							
+						case .removed: ()
+					}
+					guard !players.isEmpty else { return }
+					self.delegate?.didEndReceiving(players)
+				}
+			}
+	}
 	
 	func newRoom() {
 		guard let reference = reference else { return }
@@ -67,16 +82,48 @@ class Network: NSObject {
 		let documentReference = reference.addDocument(data: ["creation_date" : Date().timeIntervalSince1970])
 		roomID = documentReference.documentID
 		
+//		reference
+//			.document(roomID!)
+//			.collection("messages")
+//			.addDocument(data: [:])
+//		
+//		reference
+//			.document(roomID!)
+//			.collection("userData")
+//			.addDocument(data: [:])
+	}
+	
+	func playerEntered(_ player: Player) {
+		guard let reference = reference else { return }
+		guard isRoomDirectory else { return }
+		// uploadPicture and get its address.
+		
+		var data: [String : Any] = [
+			"displayName": player.displayName,
+			"liveCount": 3,
+			"isTyping": false
+		]
+		
+		if let animal = player.animal { data["animal"] = animal.name }
 		
 		reference
 			.document(roomID!)
-			.collection("messages")
-			.addDocument(data: [:])
+			.collection("playerData")
+			.document(player.senderId)
+			.setData(data)
+
+	}
+	
+	func playerLeft(_ player: Player) {
+		guard let reference = reference else { return }
+		guard isRoomDirectory else { return }
 		
 		reference
 			.document(roomID!)
-			.collection("userData")
-			.addDocument(data: [:])
+			.collection("playerData")
+			.document(player.senderId)
+			.delete()
+		
 	}
 	
 	func sendMessage(message: Message) {

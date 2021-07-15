@@ -18,6 +18,8 @@ protocol ChatPresenterEvents: AnyObject {
 	
 	func messageTopInset(for index: Int) -> CGFloat
 	
+	func isPrevSameAnimal(for index: Int) -> Bool
+	
 	var messageCount: Int { get }
 }
 
@@ -57,7 +59,7 @@ extension ChatPresenter: ChatPresenterEvents {
 		return message.animal == prevMessage.animal
 	}
 	
-	private func isPrevSameAnimal(for index: Int) -> Bool {
+	func isPrevSameAnimal(for index: Int) -> Bool {
 		guard let message = self.message(for: index),
 			  let prevMessage = self.message(for: index - 1)
 		else { return false }

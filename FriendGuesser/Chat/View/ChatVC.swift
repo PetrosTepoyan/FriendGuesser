@@ -32,7 +32,7 @@ class ChatVC: MessagesViewController {
 		configureInputBarItems()
 		configureMessageInputBar()
 		
-		setTypingIndicatorViewHidden(false, animated: true, whilePerforming: nil, completion: nil)
+//		setTypingIndicatorViewHidden(false, animated: true, whilePerforming: nil, completion: nil)
 		
 	}
 	
@@ -42,6 +42,7 @@ class ChatVC: MessagesViewController {
 		messagesCollectionView.messageCellDelegate = self
 		messagesCollectionView.messagesLayoutDelegate = self
 		messagesCollectionView.messagesDisplayDelegate = self
+		messagesCollectionView.messagesCollectionViewFlowLayout
 		
 		scrollsToLastItemOnKeyboardBeginsEditing = true // default false
 		maintainPositionOnKeyboardFrameChanged = true // default false
@@ -52,9 +53,11 @@ class ChatVC: MessagesViewController {
 		
 		guard let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
 		else { return }
-		
+		layout.textMessageSizeCalculator.messageLabelFont = UIFont(name: "Nunito", size: 18)!
 		layout.setMessageIncomingAvatarSize(.smallTappable)
 		layout.setMessageOutgoingAvatarSize(.smallTappable)
+		layout.setMessageIncomingMessagePadding(UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0))
+		layout.setMessageOutgoingMessagePadding(UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0))
 		
 		layout.sectionInset = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
 		
