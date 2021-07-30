@@ -9,8 +9,6 @@ import UIKit
 import MessageKit
 import InputBarAccessoryView
 
-
-
 class ChatVC: MessagesViewController {
 	
 	var presenter: ChatPresenterEvents!
@@ -21,6 +19,9 @@ class ChatVC: MessagesViewController {
 		return control
 	}()
 	
+	private(set) lazy var questionView: UIView = .init()
+	var questionInitialCenter: CGPoint = .zero
+	
 	@objc
 	func loadMoreMessages() {}
 	
@@ -30,10 +31,6 @@ class ChatVC: MessagesViewController {
 		presenter = ChatPresenter(view: self)
 		configureMessageCollectionView()
 		configureInputBarItems()
-		configureMessageInputBar()
-		
-//		setTypingIndicatorViewHidden(false, animated: true, whilePerforming: nil, completion: nil)
-		
 	}
 	
 	private func configureMessageCollectionView() {
@@ -42,7 +39,6 @@ class ChatVC: MessagesViewController {
 		messagesCollectionView.messageCellDelegate = self
 		messagesCollectionView.messagesLayoutDelegate = self
 		messagesCollectionView.messagesDisplayDelegate = self
-		messagesCollectionView.messagesCollectionViewFlowLayout
 		
 		scrollsToLastItemOnKeyboardBeginsEditing = true // default false
 		maintainPositionOnKeyboardFrameChanged = true // default false
@@ -57,41 +53,58 @@ class ChatVC: MessagesViewController {
 		layout.setMessageIncomingAvatarSize(.smallTappable)
 		layout.setMessageOutgoingAvatarSize(.smallTappable)
 		layout.setMessageIncomingMessagePadding(UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0))
+//		layout.messagesCollectionView.messagesDisplayDelegate.color
 		layout.setMessageOutgoingMessagePadding(UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0))
 		
 		layout.sectionInset = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
 		
 	}
 	
-	private func configureMessageInputBar() {
-		messageInputBar.delegate = self
-		messageInputBar.inputTextView.tintColor = .red
-		messageInputBar.sendButton.setTitleColor(.blue, for: .normal)
-		messageInputBar.sendButton.setTitleColor(
-			UIColor.blue.withAlphaComponent(0.3),
-			for: .highlighted
-		)
-	}
-	
 	private func configureInputBarItems() {
-//		messageInputBar.setRightStackViewWidthConstant(to: , animated: false)
-		messageInputBar.sendButton.imageView?.backgroundColor = UIColor(white: 0.85, alpha: 1)
-		messageInputBar.sendButton.setSize(.bestTappable, animated: false)
-//		messageInputBar.sendButton.image = UIImage(systemName: "paperplane.fill")
-		messageInputBar.sendButton.title = "Send"
-		messageInputBar.sendButton.imageView?.layer.cornerRadius = 4
+		let circleColor: UIColor = Player.own.animal?.color ?? .red
+		let symbolConfiguration = UIImage.SymbolConfiguration(weight: .heavy)
+		let bounceAnimator = UIViewPropertyAnimator(duration: 0.3, dampingRatio: 0.8, animations: nil)
+		let debounceAnimator = UIViewPropertyAnimator(duration: 0.4, dampingRatio: 0.8, animations: nil)
 		
-		// This just adds some more flare
-		messageInputBar.sendButton
-			.onEnabled { item in
-				UIView.animate(withDuration: 0.3, animations: {
-					item.imageView?.backgroundColor = .green
-				})
-			}.onDisabled { item in
-				UIView.animate(withDuration: 0.3, animations: {
-					item.imageView?.backgroundColor = UIColor(white: 0.85, alpha: 1)
-				})
+		messageInputBar.setRightStackViewWidthConstant(to: CGSize.bestTappable.width, animated: false)
+		messageInputBar.sendButton.configure {
+			$0.setSize(.bestTappable, animated: false)
+			$0.isEnabled = false
+			$0.image = UIImage(systemName: "arrow.up", withConfiguration: symbolConfiguration) // UIImage(systemName: "paperplane.fill")
+			$0.title = nil
+			$0.tintColor = .white
+			$0.backgroundColor = circleColor
+			$0.clipsToBounds = true
+			$0.layer.cornerRadius = CGSize.bestTappable.width / 2
+		}
+		.onEnabled { item in
+			UIView.animate(withDuration: 0.3, animations: {
+				item.backgroundColor = circleColor
+			})
+		}.onDisabled { item in
+			UIView.animate(withDuration: 0.3, animations: {
+				item.backgroundColor = circleColor.withAlphaComponent(0.7)
+			})
+		}
+		.onKeyboardEditingBegins { item in
+			bounceAnimator.addAnimations {
+				item.transform = item.transform.rotated(by: .pi/4)
 			}
+			
+			debounceAnimator.addAnimations {
+				item.transform = .identity
+			}
+			
+			bounceAnimator.addCompletion { position in
+				guard position == .end else { return }
+				debounceAnimator.startAnimation()
+			}
+			
+			bounceAnimator.startAnimation()
+		}
+		
+		
+		messageInputBar.delegate = self
 	}
 	
 }

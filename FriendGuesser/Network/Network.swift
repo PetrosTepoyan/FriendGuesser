@@ -13,13 +13,9 @@ class Network: NSObject {
 	static var shared = Network()
 	
 	private let db = Firestore.firestore()
-	private var reference: CollectionReference?
+	var reference: CollectionReference?
 	
-	private var roomID: String?
-	private var roomPath: String? {
-		guard let roomID = roomID else { return nil }
-		return "rooms/" + roomID
-	}
+	var roomID: String?
 	
 	weak var delegate: ChatMessagesReceivable?
 	
@@ -62,6 +58,7 @@ class Network: NSObject {
 					guard let player = try? Player(document: $0.document) else { return }
 					switch $0.type {
 						case .modified:
+							guard player != .own else { return }
 							let isTyping = $0.document.data()["isTyping"] as! Bool
 							self.delegate?.isTyping(for: player, boolValue: isTyping)
 							
@@ -98,11 +95,7 @@ class Network: NSObject {
 		guard isRoomDirectory else { return }
 		// uploadPicture and get its address.
 		
-		var data: [String : Any] = [
-			"displayName": player.displayName,
-			"liveCount": 3,
-			"isTyping": false
-		]
+		var data: [String : Any] = player.skeletonData
 		
 		if let animal = player.animal { data["animal"] = animal.name }
 		
@@ -132,6 +125,15 @@ class Network: NSObject {
 				.collection("messages")
 		else { return }
 		messagesCollection.addDocument(data: message.data)
+	}
+	
+	func update(typingStatus: Bool) {
+		guard let userDataReference = reference?
+				.document("testRoom")
+				.collection("playerData")
+				.document(Player.own.senderId)
+		else { return }
+		userDataReference.updateData(["isTyping": typingStatus])
 	}
 }
 

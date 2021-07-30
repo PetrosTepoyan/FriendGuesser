@@ -8,10 +8,10 @@
 import Foundation
 
 class ChatPresenter {
-	weak var view: ChatViewDelegate?
+	weak var view: ChatVCCompositeProtocol?
 	var model: ChatModel!
 	
-	init(view: ChatViewDelegate) {
+	init(view: ChatVCCompositeProtocol) {
 		self.view = view
 		self.model = ChatModel(view: view)
 	}

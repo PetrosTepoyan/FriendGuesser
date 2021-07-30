@@ -17,6 +17,7 @@ struct Player: SenderType {
 	var liveCount: Int?
 	var animal: Animal?
 	var image: UIImage?
+	var imageURL: URL?
 	
 	static var own = Player(senderId: "self", displayName: "lion")
 	
@@ -38,11 +39,37 @@ struct Player: SenderType {
 		self.senderId = document.documentID
 		self.displayName = displayName
 		self.liveCount = liveCount
+		
+		guard let imageURLString = data["imageURL"] as? String,
+			  let imageURL = URL(string: imageURLString),
+			  let imageData = try? Data(contentsOf: imageURL),
+			  let image = UIImage(data: imageData)
+		else { return }
+		self.image = image
+		self.imageURL = imageURL
+		
 	}
 }
 
 extension Player: Hashable {
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(animal)
+	}
+}
+
+extension Player: Equatable {
+	static func == (lhs: Self, rhs: Self) -> Bool {
+		return lhs.senderId == rhs.senderId
+	}
+}
+
+// Default data provider
+extension Player {
+	var skeletonData: [String : Any] { [
+		"displayName": displayName,
+		"liveCount": 3,
+		"isTyping": false,
+		"imageURL": imageURL?.absoluteString ?? ""
+	]
 	}
 }

@@ -22,7 +22,8 @@ extension ChatVC: MessagesDataSource {
 	}
 	
 	func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-		presenter.messageCount
+		print("Message count", presenter.messageCount)
+		return presenter.messageCount
 	}
 	
 	func typingIndicator(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell {

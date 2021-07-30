@@ -24,11 +24,18 @@ extension ChatModel: ChatMessagesReceivable {
 		messages.append(contentsOf: newMessages)
 		view?.reloadData()
 	}
-	
+	//
 	func isTyping(for player: Player, boolValue: Bool) {
+		
 		switch boolValue {
 			case true: typingPlayers.insert(player)
 			case false: typingPlayers.remove(player)
+		}
+		
+		if player == .own { // tell to backend
+			Network.shared.update(typingStatus: boolValue)
+		} else {
+			view?.updateTypingIndicator(value: boolValue)
 		}
 	}
 }

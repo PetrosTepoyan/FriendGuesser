@@ -21,12 +21,23 @@ protocol ChatPresenterEvents: AnyObject {
 	func isPrevSameAnimal(for index: Int) -> Bool
 	
 	var messageCount: Int { get }
+	
+	var isTyping: Bool { get set }
 }
 
 extension ChatPresenter: ChatPresenterEvents {
 	
 	var messageCount: Int {
 		return model.messages.count
+	}
+	
+	var isTyping: Bool {
+		get {
+			model.typingPlayers.contains(.own)
+		}
+		set {
+			model.isTyping(for: .own, boolValue: newValue)
+		}
 	}
 	
 	func message(for index: Int) -> Message? {

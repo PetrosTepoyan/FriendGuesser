@@ -16,8 +16,6 @@ extension ChatVC: MessagesDisplayDelegate {
 		avatarView.backgroundColor = message.animal.color
 		avatarView.placeholderFont = .systemFont(ofSize: 30)
 		avatarView.initials = message.animal.emoji
-		
-		
 	}
 	
 	func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {

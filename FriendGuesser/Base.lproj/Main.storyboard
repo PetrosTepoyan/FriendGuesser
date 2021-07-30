@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19115.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aJz-0a-1ML">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aJz-0a-1ML">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -62,6 +61,23 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="wjT-tl-haU"/>
                                 </connections>
                             </collectionView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2nv-Kf-bCV">
+                                <rect key="frame" x="127" y="164" width="160" height="160"/>
+                                <color key="backgroundColor" red="1" green="0.01224201724" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2nv-Kf-bCV" secondAttribute="height" multiplier="1:1" id="D1s-Jf-7db"/>
+                                    <constraint firstAttribute="width" constant="160" id="qTj-z7-fXH"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qhv-Lm-HJP" appends="YES" id="wCP-R5-UtA"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -74,17 +90,25 @@
                             <constraint firstItem="tU0-W2-yiA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="NPM-01-RDk"/>
                             <constraint firstItem="AVR-Q3-822" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="TW4-j6-nvg"/>
                             <constraint firstItem="JCz-gp-Igy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yce-C5-oDZ"/>
+                            <constraint firstItem="tU0-W2-yiA" firstAttribute="top" secondItem="2nv-Kf-bCV" secondAttribute="bottom" constant="47" id="gmv-xO-lau"/>
                             <constraint firstItem="AVR-Q3-822" firstAttribute="top" secondItem="JCz-gp-Igy" secondAttribute="bottom" constant="57" id="wu5-VL-btV"/>
+                            <constraint firstItem="2nv-Kf-bCV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="xH6-7H-DWO"/>
                             <constraint firstItem="tU0-W2-yiA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zDM-x3-m2a"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pA8-hu-8fL"/>
                     <connections>
                         <outlet property="animalsCollectionView" destination="AVR-Q3-822" id="tNR-PL-Tyr"/>
+                        <outlet property="avatarImageView" destination="2nv-Kf-bCV" id="X9u-72-qYh"/>
                         <outlet property="nameTextField" destination="tU0-W2-yiA" id="w6v-3v-G8U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="qhv-Lm-HJP">
+                    <connections>
+                        <action selector="imageViewTapped:" destination="BYZ-38-t0r" id="caE-P0-34G"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="995.65217391304361" y="78.348214285714278"/>
         </scene>
